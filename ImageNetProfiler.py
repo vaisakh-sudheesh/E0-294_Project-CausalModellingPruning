@@ -22,7 +22,7 @@ def ImageNetProfiler():
     stats_mon = SystemStatsGatherer()
 
     df_final = pd.DataFrame()
-    for ratio in np.arange(0.0, 1.0, 0.1):
+    for ratio in np.arange(0.0, 0.2, 0.1):
         stats_mon = SystemStatsGatherer()
         stats_mon.startSampling()
         acc,prof_result,model = Pruning(args.pruning_method,args.model_name,ratio)
@@ -43,17 +43,19 @@ def ImageNetProfiler():
         display(df_final)
         del prof_result
     del model
+    # Define the directory where the CSV files will be saved
+    SAVE_DIR = os.getcwd()
 
-    DF_SAVEFILENAME = os.getcwd()+args.filename
+
+
+# Use the function to generate the filename
+    DF_SAVEFILENAME = os.path.join(SAVE_DIR, args.filename)
+
+# Save the DataFrame to CSV
     df_final_transpose = df_final.transpose().reset_index(drop=True)
     display(df_final_transpose)
     df_final_transpose.to_csv(DF_SAVEFILENAME, encoding='utf-8', sep=',')
     
-   
-
-        # Aggregation and dataframe creation logic here
-
-    # Save aggregated stats to CSV
 
 if __name__ == "__main__":
     ImageNetProfiler()

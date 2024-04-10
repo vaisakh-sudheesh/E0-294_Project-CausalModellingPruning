@@ -46,7 +46,9 @@ def LenNetModelPruner():
         del prof_result
     del model
 
-    DF_SAVEFILENAME = os.getcwd()+args.filename
+    SAVE_DIR = os.getcwd()
+
+    DF_SAVEFILENAME = os.path.join(SAVE_DIR, args.filename)
     df_final_transpose = df_final.transpose().reset_index(drop=True)
     display(df_final_transpose)
     df_final_transpose.to_csv(DF_SAVEFILENAME, encoding='utf-8', sep=',')

@@ -12,7 +12,6 @@ To download the ImageNet dataset, follow the steps below:
 
 2. After downloading the tar file, unzip it into the desired folder using the following command:
     ```
-    cd imagenet/val
     tar -xvf ILSVRC2012_img_val.tar -C <PATH TO IMAGENET>/imagenet/val
     ```
 

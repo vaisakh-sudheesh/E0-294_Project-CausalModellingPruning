@@ -1,2 +1,5 @@
 *.JPEG
 *.tar
+data
+*.gz
+*.pyc

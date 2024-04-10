@@ -22,7 +22,7 @@ def ImageNetProfiler():
     stats_mon = SystemStatsGatherer()
 
     df_final = pd.DataFrame()
-    for ratio in np.arange(0.0, 0.2, 0.1):
+    for ratio in np.arange(0.0, 1.0, 0.1):
         stats_mon = SystemStatsGatherer()
         stats_mon.startSampling()
         acc,prof_result,model = Pruning(args.pruning_method,args.model_name,ratio)

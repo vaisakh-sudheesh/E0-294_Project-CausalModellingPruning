@@ -11,7 +11,7 @@ loss_fn = None
 BASE_DIR = os.getcwd()
 
 device = (
-    "cuda:2" if torch.cuda.is_available()
+    "cuda" if torch.cuda.is_available()
     else "mps" if torch.backends.mps.is_available()
     else "cpu"
 )

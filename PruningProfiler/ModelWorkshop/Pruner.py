@@ -31,8 +31,6 @@ class Pruner:
                 self.random_unstructured(ratio)
             elif method == 'ln_structured':
                 self.ln_structured(ratio)
-            elif method == 'ln_unstructured':
-                self.ln_unstructured(ratio)
             else:
                 raise ValueError('Invalid pruning method')
 

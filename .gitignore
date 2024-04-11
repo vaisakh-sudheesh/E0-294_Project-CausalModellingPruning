@@ -1,5 +1,5 @@
-*.JPEG
-*.tar
-data
-*.gz
-*.pyc
+my_env/
+PruningProfiler/Data/dataset/*
+PruningProfiler/Data/ILSVRC2012_img_val.tar
+#Model/*.pth
+__pycache__

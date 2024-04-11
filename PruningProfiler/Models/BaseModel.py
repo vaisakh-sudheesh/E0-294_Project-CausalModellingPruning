@@ -11,6 +11,7 @@ class BaseModel(ABC):
                         else "mps" if torch.backends.mps.is_available()
                         else "cpu"
                         )
+        print ('Using device ', self.device)
         self.train_dataloader = traindataloader
         self.test_dataloader = testdataloader
 

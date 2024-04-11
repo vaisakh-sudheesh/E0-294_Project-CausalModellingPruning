@@ -5,3 +5,4 @@ PruningProfiler/Data/imagenet
 #Model/*.pth
 __pycache__
 *.swp
+*.out

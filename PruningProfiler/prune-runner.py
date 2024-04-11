@@ -17,6 +17,7 @@ def parse_arguments():
     return parser.parse_args()
 
 if __name__ == '__main__':
+    print("Pruning runner starting...")
     args = parse_arguments()
     if args.model_name == "lenet":
         model = LeNet.LeNet()

@@ -38,4 +38,4 @@ $ pip3 install torch torchvision torchaudio --index-url https://download.pytorch
 * Make batch-size and runner configuration for imagenet data set configurable as the default setting is resulting in GPU/CUDA OOM desktop/laptop.
 * Add post processing script to make combined dataframe which can be given for causal modelling.
 * Instead of 'dmidecode' which requires sudo access, try to obtain the data from other paths (ref: https://unix.stackexchange.com/questions/24212/how-to-get-dmidecode-information-without-root-privileges ), which doesn't require root privilages
-* 
+* Modify the process creation for prune-runner.py from prune-profiler.py so that the STDOUT is also visible during execution - helpful in seeing progress.

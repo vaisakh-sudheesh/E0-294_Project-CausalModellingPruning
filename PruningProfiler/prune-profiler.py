@@ -35,9 +35,7 @@ def parse_arguments():
     parser.add_argument('--result_dir', type=str, required=True, default="output", help="Directory to store the profiling results")
     return parser.parse_args()
 
-def prune_profiler():
-    args = parse_arguments()
-    results_dir = args.result_dir
+def prune_profiler(results_dir, model_name = 'lenet', prune_ratio = 0.0, prune_config = 'l1_unstructured'):
     results_dir__ = os.path.join(os.getcwd(), results_dir)
     if not os.path.exists(results_dir__):
         results_dir_path = pathlib.Path(results_dir__)
@@ -55,9 +53,8 @@ def prune_profiler():
     perf_cmd_intel = ['perf', 'stat', '-e', 'instructions,cycles,cache-references,cache-misses,branches,branch-misses', '-o',  perf_output_file , '-x', ',']
     perf_cmd_amd = ['perf', 'stat', '-e', 'instructions,cycles,cache-references,cache-misses,branches,branch-misses', '-o', perf_output_file , '-x', ',']
     ## The workload command to be profiled
-    prune_ratio = 0.0
-    prune_config = 'global_unstructured'
-    workload_cmd= ['python', 'prune-runner.py', '--model_name', 'lenet', '--pruning_method', prune_config, '--pruning_ratio', str(prune_ratio)]
+    #workload_cmd= ['python', 'prune-runner.py', '--model_name', 'lenet', '--pruning_method', prune_config, '--pruning_ratio', str(prune_ratio)]
+    workload_cmd= ['python', 'prune-runner.py', '--model_name', model_name, '--pruning_method', prune_config, '--pruning_ratio', str(prune_ratio)]
 
     # Header fields for perf command output file
     perf_data_headers = ["counter-value" , "unit", "event" , "event-runtime", "pcnt-running" , "metric-value", "metric-unit" ]
@@ -71,12 +68,11 @@ def prune_profiler():
     try:
         statsMon = sysstat.SystemStatsGatherer()
         statsMon.startSampling()
-        process = subprocess.Popen(combined_cmd, stdout=subprocess.PIPE, stderr=subprocess.PIPE)
-        output, stderr = process.communicate()
-        output = output.decode("utf-8")
-        stderr = stderr.decode("utf-8")
-        # print ("OUTPUT ==> ",output)
-        # print ("STDERR ==> ",stderr)
+        output,stderr = subprocess.check_output(combined_cmd).decode("utf-8")
+        # process = subprocess.Popen(combined_cmd, stdout=subprocess.PIPE, stderr=subprocess.PIPE)
+        # output, stderr = process.communicate()
+        # output = output.decode("utf-8")
+        # stderr = stderr.decode("utf-8")
 
         acc = ''
         for line in output.splitlines():
@@ -126,8 +122,33 @@ def prune_profiler():
 
     df_stats
 
+def lenet():
+    model_name_list = ['lenet']
+    pruning_config = ['global_unstructured']
+    for modelname in model_name_list:
+        for pruneconf in pruning_config:
+            for ratio in np.arange(0.0,0.8,0.1):
+                results_dir = 'output/'+modelname+'-'+pruneconf+'-'+str(ratio)
+                print ('>>> Iteration Config',modelname+'-'+pruneconf+'-'+str(ratio))
+                prune_profiler(results_dir, model_name = modelname, prune_ratio = ratio, prune_config = pruneconf)
+
+def resnetRun():
+    model_name_list = ['resnet']
+    pruning_config = ['l1_unstructured', 'ln_structured', 'random_unstructured']
+    for modelname in model_name_list:
+        for pruneconf in pruning_config:
+            for ratio in np.arange(0.0,0.8,0.1):
+                results_dir = 'output/'+modelname+'-'+pruneconf+'-'+str(ratio)
+                print ('=== Iteration Config',modelname+'-'+pruneconf+'-'+str(ratio))
+                prune_profiler(results_dir, model_name = modelname, prune_ratio = ratio, prune_config = pruneconf)
 
 
 if __name__ == '__main__':
-    args = parse_arguments()
-    prune_profiler()
+    # args = parse_arguments()
+
+    # lenet()
+    resnetRun()
+
+    # results_dir = args.result_dir
+    # args = parse_arguments(results_dir)
+    # prune_profiler()

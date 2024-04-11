@@ -31,6 +31,8 @@ class Pruner:
                 self.random_unstructured(ratio)
             elif method == 'ln_structured':
                 self.ln_structured(ratio)
+            elif method == 'random_structured':
+                self.random_structured(ratio)
             else:
                 raise ValueError('Invalid pruning method')
 
@@ -55,16 +57,16 @@ class Pruner:
 
     def random_structured(self, ratio):
         for layer, name in self.conv_layers_to_prune:
-            prune.random_structured(layer, name='weight', amount=ratio)
+            prune.random_structured(layer, name='weight', amount=ratio,dim=0)
         for layer, name in self.fc_layers_to_prune:
-            prune.random_structured(layer, name='weight', amount=ratio)
+            prune.random_structured(layer, name='weight', amount=ratio,dim=0)
 
 
     def ln_structured(self, ratio):
         for layer, name in self.conv_layers_to_prune:
-            prune.ln_structured(layer, name='weight', amount=ratio,n=2)
+            prune.ln_structured(layer, name='weight', amount=ratio,n=2,dim=0)
         for layer, name in self.fc_layers_to_prune:
-            prune.ln_structured(layer, name='weight', amount=ratio,n=2)
+            prune.ln_structured(layer, name='weight', amount=ratio,n=2,dim=0)
 
     def global_unstructured(self, ratio):
         parameters = ((self.model.conv1, "weight"),(self.model.conv2, "weight"),(self.model.fc1, "weight"),(self.model.fc2, "weight"),)

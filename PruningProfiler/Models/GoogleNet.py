@@ -7,7 +7,7 @@ class GoogleNet(BaseModel):
     def __init__(self):
         self.__MODEL_FILENAME = "Models/googlenet.pth"
         self.dataloader = ImageNet.ImageNetKaagle()
-        super().__init__(self.dataloader, self.dataloader)
+        super().__init__(self.dataloader.dataset, self.dataloader.dataset)
 
         self.model = torchvision.models.googlenet(weights = "DEFAULT")
         self.model.to(self.device)

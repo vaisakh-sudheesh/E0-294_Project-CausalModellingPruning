@@ -4,7 +4,7 @@ from torch.utils.data import DataLoader
 from tqdm import tqdm
 
 class BaseModel(ABC):
-    def __init__(self, traindataloader:DataLoader, testdataloader:DataLoader):
+    def __init__(self, traindataloader:DataLoader = None, testdataloader:DataLoader = None):
         self.model = None
         self.device =  (
                         "cuda" if torch.cuda.is_available()
@@ -15,6 +15,9 @@ class BaseModel(ABC):
         self.test_dataloader = testdataloader
 
     def test(self) -> float:
+        if (self.test_dataloader is None):
+            print("Test data not provided")
+            return None
         self.model.eval()
         acc = 0
         count = 0
@@ -28,6 +31,9 @@ class BaseModel(ABC):
         return acc__.numpy()*100
 
     def train(self, n_epochs=10):
+        if (self.train_dataloader is None):
+            print("Train data not provided")
+            return
         for epoch in range(n_epochs):
             self.model.train()
             for X_batch, y_batch in self.train_dataloader:

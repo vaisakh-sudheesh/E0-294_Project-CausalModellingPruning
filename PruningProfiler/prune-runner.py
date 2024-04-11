@@ -3,6 +3,9 @@ import ModelWorkshop.Pruner as Pruner
 
 import Models.LeNet as LeNet
 import Models.ResNet as ResNet
+import Models.VGG16 as VGG16
+import Models.AlexNet as AlexNet
+import Models.GoogleNet as GoogleNet
 
 
 def parse_arguments():
@@ -19,6 +22,12 @@ if __name__ == '__main__':
         model = LeNet.LeNet()
     elif args.model_name == "resnet":
         model = ResNet.ResNet()
+    elif args.model_name == "vgg16":
+        model = VGG16.VGG16()  
+    elif args.model_name == "googlenet":
+        model = GoogleNet.GoogleNet()  
+    elif args.model_name == "alexnet":
+        model = AlexNet.AlexNet()
     else:
         raise ValueError("Invalid model name")
     if (model.load_model() == False):

@@ -68,11 +68,11 @@ def prune_profiler(results_dir, model_name = 'lenet', prune_ratio = 0.0, prune_c
     try:
         statsMon = sysstat.SystemStatsGatherer()
         statsMon.startSampling()
-        output,stderr = subprocess.check_output(combined_cmd).decode("utf-8")
-        # process = subprocess.Popen(combined_cmd, stdout=subprocess.PIPE, stderr=subprocess.PIPE)
-        # output, stderr = process.communicate()
-        # output = output.decode("utf-8")
-        # stderr = stderr.decode("utf-8")
+        # output,stderr = subprocess.check_output(combined_cmd).decode("utf-8")
+        process = subprocess.Popen(combined_cmd, stdout=subprocess.PIPE, stderr=subprocess.PIPE)
+        output, stderr = process.communicate()
+        output = output.decode("utf-8")
+        stderr = stderr.decode("utf-8")
 
         acc = ''
         for line in output.splitlines():
@@ -114,7 +114,7 @@ def prune_profiler(results_dir, model_name = 'lenet', prune_ratio = 0.0, prune_c
 
     res_csv_sysstat = os.path.join(results_dir__, 'system_stats.csv')
     print("\tSysStat Summary: ",res_csv_sysstat)
-    agg_df.to_csv(res_csv_sysstat)
+    agg_df__.to_csv(res_csv_sysstat)
 
     res_csv_fullsysstat = os.path.join(results_dir__, 'full_system_stats.csv')
     print("\tFull System Stats: ",res_csv_fullsysstat)

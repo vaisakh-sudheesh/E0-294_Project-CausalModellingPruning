@@ -120,7 +120,7 @@ def prune_profiler(results_dir, model_name = 'lenet', prune_ratio = 0.0, prune_c
     print("\tFull System Stats: ",res_csv_fullsysstat)
     df_stats.to_csv(res_csv_fullsysstat)
 
-    df_stats
+    # df_stats
 
 def lenet():
     model_name_list = ['lenet']
@@ -133,7 +133,12 @@ def lenet():
                 prune_profiler(results_dir, model_name = modelname, prune_ratio = ratio, prune_config = pruneconf)
 
 def resnetRun():
-    model_name_list = ['resnet']
+    model_name_list = [
+            'resnet',
+            'alexnet',
+            'vgg16',
+            'googlenet'
+            ]
     pruning_config = ['l1_unstructured', 'ln_structured', 'random_unstructured']
     for modelname in model_name_list:
         for pruneconf in pruning_config:

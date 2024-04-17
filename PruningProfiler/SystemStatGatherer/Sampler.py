@@ -119,31 +119,6 @@ class SystemStatsGatherer:
             else:
                 self.temp_dict['diskio_'+self.diskio_fieldname[ctr]] += [val]
             ctr += 1
-        # Process the Temperature readings
-        for key,values in res_temp.items():
-            # print (key,' => ',values)
-            for temp_elems in values:
-                # print (temp_elems)
-                tempsensor_name = key
-                ctr = 0;title_field = True
-                for val in temp_elems:
-                    if (title_field == True):
-                        tempsensor_name +=  '-'+str(val)
-                        title_field = False
-                    else:
-                        self.tempsensor_fieldvals[ctr] = val
-                        ctr += 1
-                        
-                    # print(key,'-', '=>',tempsensor_fieldname[ctr],'-->',sensor_val)
-                # print (tempsensor_name,'=>',tempsensor_fieldvals)
-                ctr = 0
-                for elems in self.tempsensor_fieldvals:
-                    # print (tempsensor_name+'-'+tempsensor_fieldname[ctr],'=>',elems)
-                    if (self.not_firstime == False):
-                        self.temp_dict[tempsensor_name+'-'+self.tempsensor_fieldname[ctr]] = [elems]
-                    else:
-                        self.temp_dict[tempsensor_name+'-'+self.tempsensor_fieldname[ctr]] += [elems]
-                    ctr += 1
         self.not_firstime = True
 
     def getReadings(self):

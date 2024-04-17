@@ -62,13 +62,13 @@ def prune_profiler(results_dir, model_name = 'lenet', prune_ratio = 0.0, prune_c
     # Pruning configurations
     combined_cmd = []
     combined_cmd = perf_cmd_amd + nvprof_cmd + workload_cmd
-
+    #combined_cmd = workload_cmd
     print (combined_cmd)
 
     try:
         statsMon = sysstat.SystemStatsGatherer()
         statsMon.startSampling()
-        # output,stderr = subprocess.check_output(combined_cmd).decode("utf-8")
+        #output,stderr = subprocess.check_output(combined_cmd).decode("utf-8")
         process = subprocess.Popen(combined_cmd, stdout=subprocess.PIPE, stderr=subprocess.PIPE)
         output, stderr = process.communicate()
         output = output.decode("utf-8")
@@ -90,7 +90,8 @@ def prune_profiler(results_dir, model_name = 'lenet', prune_ratio = 0.0, prune_c
     print(f'Processing results...')
     df_nvprof_data = pd.read_csv( nvprof_output_file, comment='=')
     df_perf_data = pd.read_csv(perf_output_file , skip_blank_lines=True, skiprows=2, names=perf_data_headers)
-    df_stats = pd.DataFrame.from_dict(statsMon.getReadings())
+    dicts= statsMon.getReadings()
+    df_stats = pd.DataFrame.from_dict(dicts)
     agg_df = df_stats[['vm_percent','swap_percent','cpuloadavg_1min', 'cpuloadavg_5min', 'cpu_0', 'cpu_1', 'cpu_psi_total', 'mem_psi_total', 'io_psi_total']]
     agg_df__ =  agg_df.mean()
     agg_df__['acc'] = acc
@@ -109,7 +110,7 @@ def prune_profiler(results_dir, model_name = 'lenet', prune_ratio = 0.0, prune_c
     df_nvprof_data.to_csv(res_csv_nvprof)
 
     res_csv_perf = os.path.join(results_dir__, 'perf_data.csv')
-    print("\tNVPROF: ",res_csv_perf)
+    print("\tPERF: ",res_csv_perf)
     df_perf_data.to_csv(res_csv_perf)
 
     res_csv_sysstat = os.path.join(results_dir__, 'system_stats.csv')
@@ -134,11 +135,11 @@ def lenet():
 
 def resnetRun():
     model_name_list = [
-            'resnet',
-            'alexnet',
-            'vgg16',
-            'googlenet'
-            ]
+           'resnet',
+           'alexnet',
+           'vgg16',
+           'googlenet'
+         ]
     pruning_config = ['l1_unstructured', 'ln_structured', 'random_unstructured']
     for modelname in model_name_list:
         for pruneconf in pruning_config:

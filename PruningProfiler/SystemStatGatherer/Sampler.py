@@ -44,34 +44,34 @@ class SystemStatsGatherer:
         ##get CPU frequencies
         if (self.not_firstime == False):
             for key, value in res_cpufreq.items():
-                self.temp_dict[f'cpu_{key}'] = float(value)
+                self.temp_dict[f'cpu_{key}'] = [float(value)]
         else:
             for key, value in res_cpufreq.items():
-                self.temp_dict[f'cpu_{key}'] += float(value)
+                self.temp_dict[f'cpu_{key}'] += [float(value)]
 
          ##get CPU PSI
         if (self.not_firstime == False):
             for key, value in res_psicpu.items():
-                self.temp_dict[f'cpu_psi_{key}'] = value
+                self.temp_dict[f'cpu_psi_{key}'] = [value]
         else:
             for key, value in res_psicpu.items():
-                self.temp_dict[f'cpu_psi_{key}'] += value
+                self.temp_dict[f'cpu_psi_{key}'] +=[value]
 
          ##get Memory PSI
         if (self.not_firstime == False):
             for key, value in res_psimem.items():
-                self.temp_dict[f'mem_psi_{key}'] = value
+                self.temp_dict[f'mem_psi_{key}'] = [value]
         else:
             for key, value in res_psimem.items():
-                self.temp_dict[f'mem_psi_{key}'] += value
+                self.temp_dict[f'mem_psi_{key}'] += [value]
 
         ##get IO PSI
         if (self.not_firstime == False):
             for key, value in res_psicio.items():
-                self.temp_dict[f'io_psi_{key}'] = value
+                self.temp_dict[f'io_psi_{key}'] = [value]
         else:
             for key, value in res_psicio.items():
-                self.temp_dict[f'io_psi_{key}'] += value
+                self.temp_dict[f'io_psi_{key}'] += [value]
 
         ##get GPU stats
         # print ('res_gpustat ==> ',res_gpustat)
@@ -79,20 +79,20 @@ class SystemStatsGatherer:
             for key, value in gpu_info.items():
                 column_name = f'{key}_{i+1}'
                 if (self.not_firstime == False):
-                    self.temp_dict[f'gpu_{column_name}'] = value
+                    self.temp_dict[f'gpu_{column_name}'] = [value]
                 else:
-                    self.temp_dict[f'gpu_{column_name}'] = value
+                    self.temp_dict[f'gpu_{column_name}'] += [value]
                 
         ## get CPU Load averages
         loadavgs = [x / psutil.cpu_count() * 100 for x in psutil.getloadavg()]
         if (self.not_firstime == False):
-            self.temp_dict['cpuloadavg_1min'] = loadavgs[0]
-            self.temp_dict['cpuloadavg_5min'] = loadavgs[1]
-            self.temp_dict['cpuloadavg_15min'] = loadavgs[2]
+            self.temp_dict['cpuloadavg_1min'] = [loadavgs[0]]
+            self.temp_dict['cpuloadavg_5min'] = [loadavgs[1]]
+            self.temp_dict['cpuloadavg_15min'] = [loadavgs[2]]
         else:
-            self.temp_dict['cpuloadavg_1min'] += loadavgs[0]
-            self.temp_dict['cpuloadavg_5min'] += loadavgs[1]
-            self.temp_dict['cpuloadavg_15min'] += loadavgs[2]
+            self.temp_dict['cpuloadavg_1min'] += [loadavgs[0]]
+            self.temp_dict['cpuloadavg_5min'] += [loadavgs[1]]
+            self.temp_dict['cpuloadavg_15min'] += [loadavgs[2]]
 
 
         ## Process the Virtual Memory readings

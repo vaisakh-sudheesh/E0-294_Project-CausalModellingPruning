@@ -76,15 +76,18 @@ def prune_profiler(results_dir, model_name = 'lenet', prune_ratio = 0.0, prune_c
         rc = process.returncode
 
         if rc != 0:
+            print ("Iteration not completed due to error..")
             acc = 'DNF'
-            for line in output.splitlines():
+            for line in stderr.splitlines():
                 if "torch.cuda.OutOfMemoryError" in line:
                     acc = 'NDF-OOM'
+                    print ("!! OOM")
                 elif "torch.cuda.OutOfMemoryError" in line:
                     acc = 'DNF-DATA_ERROR'
+                    print ("!! Data Error")
         else:
             acc = ''
-            for line in output.splitlines():
+            for line in stderr.splitlines():
                 if "Done - Accuracy after pruning:" in line:
                     acc = line.split(":", 1)[1].strip()
 

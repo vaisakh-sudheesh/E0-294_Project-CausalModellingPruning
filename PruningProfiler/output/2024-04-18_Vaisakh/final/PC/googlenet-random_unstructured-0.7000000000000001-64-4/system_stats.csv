@@ -1,0 +1,20 @@
+,0
+vm_percent,25.65
+swap_percent,0.5
+cpuloadavg_1min,10.1654052734375
+cpuloadavg_5min,15.82489013671875
+cpu_0,2830.072
+cpu_1,2826.3765
+cpu_psi_total,687376441.5
+mem_psi_total,106372711.0
+io_psi_total,30614425298.5
+acc,48.600003123283386
+prune_config,random_unstructured
+prune_ratio,0.7000000000000001
+model_name,googlenet
+batchsz_arg,64
+num_workers_arg,4
+chipset_name,AMD Ryzen 7 3700X 8-Core Processor
+arch,x86_64
+l1_size,256 KiB (8 instances)
+l2_size,4 MiB (8 instances)

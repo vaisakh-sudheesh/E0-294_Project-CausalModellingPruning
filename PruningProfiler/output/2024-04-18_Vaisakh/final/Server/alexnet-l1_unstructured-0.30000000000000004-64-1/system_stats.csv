@@ -1,0 +1,20 @@
+,0
+vm_percent,1.4749999999999999
+swap_percent,0.0
+cpuloadavg_1min,5.663194444444445
+cpuloadavg_5min,4.857638888888889
+cpu_0,1000.10225
+cpu_1,1704.8447499999997
+cpu_psi_total,547774331.5
+mem_psi_total,0.0
+io_psi_total,199055915.75
+acc,58.799999952316284
+prune_config,l1_unstructured
+prune_ratio,0.30000000000000004
+model_name,alexnet
+batchsz_arg,64
+num_workers_arg,1
+chipset_name,Intel(R) Xeon(R) Gold 6140 CPU @ 2.30GHz
+arch,x86_64
+l1_size,1.1 MiB
+l2_size,36 MiB

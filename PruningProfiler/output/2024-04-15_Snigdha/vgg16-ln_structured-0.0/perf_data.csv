@@ -1,0 +1,7 @@
+,counter-value,unit,event,event-runtime,pcnt-running,metric-value,metric-unit
+0,30506966549239,,instructions,6589831304456,83.33,1.07,insn per cycle
+1,28466092786058,,cycles,6589866868867,83.33,,
+2,164367002622,,cache-references,6589705592585,83.33,,
+3,35330367174,,cache-misses,6589913508777,83.33,21.495,of all cache refs
+4,6007543728662,,branches,6590586192029,83.34,,
+5,24799178968,,branch-misses,5272228291894,66.67,0.41,of all branches

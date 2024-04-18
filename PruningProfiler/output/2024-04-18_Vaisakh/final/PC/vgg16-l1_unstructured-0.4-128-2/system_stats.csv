@@ -1,0 +1,20 @@
+,0
+vm_percent,24.133333333333336
+swap_percent,0.5
+cpuloadavg_1min,13.5650634765625
+cpuloadavg_5min,14.666748046875
+cpu_0,3562.289
+cpu_1,2182.886
+cpu_psi_total,661198843.0
+mem_psi_total,106372648.0
+io_psi_total,30447471798.0
+acc,NDF-OOM
+prune_config,l1_unstructured
+prune_ratio,0.4
+model_name,vgg16
+batchsz_arg,128
+num_workers_arg,2
+chipset_name,AMD Ryzen 7 3700X 8-Core Processor
+arch,x86_64
+l1_size,256 KiB (8 instances)
+l2_size,4 MiB (8 instances)

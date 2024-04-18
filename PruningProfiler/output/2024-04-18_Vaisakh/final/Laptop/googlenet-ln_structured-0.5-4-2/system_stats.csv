@@ -1,0 +1,20 @@
+,0
+vm_percent,25.200000000000003
+swap_percent,0.0
+cpuloadavg_1min,15.230305989583334
+cpuloadavg_5min,18.485514322916664
+cpu_0,3870.526
+cpu_1,3845.1295
+cpu_psi_total,167550273.0
+mem_psi_total,223035.0
+io_psi_total,1026897043.5
+acc,38.200002908706665
+prune_config,ln_structured
+prune_ratio,0.5
+model_name,googlenet
+batchsz_arg,4
+num_workers_arg,2
+chipset_name,Intel(R) Core(TM) i7-9750H CPU @ 2.60GHz
+arch,x86_64
+l1_size,192 KiB (6 instances)
+l2_size,1.5 MiB (6 instances)

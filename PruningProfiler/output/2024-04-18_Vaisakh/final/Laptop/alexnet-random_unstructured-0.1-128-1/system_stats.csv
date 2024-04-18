@@ -1,0 +1,20 @@
+,0
+vm_percent,26.8
+swap_percent,0.0
+cpuloadavg_1min,14.507378472222221
+cpuloadavg_5min,14.474826388888891
+cpu_0,4034.26
+cpu_1,4008.1396666666665
+cpu_psi_total,122298564.33333333
+mem_psi_total,220651.0
+io_psi_total,960332466.3333334
+acc,52.60000228881836
+prune_config,random_unstructured
+prune_ratio,0.1
+model_name,alexnet
+batchsz_arg,128
+num_workers_arg,1
+chipset_name,Intel(R) Core(TM) i7-9750H CPU @ 2.60GHz
+arch,x86_64
+l1_size,192 KiB (6 instances)
+l2_size,1.5 MiB (6 instances)

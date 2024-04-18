@@ -1,0 +1,15 @@
+{
+    "version": "0.2.0",
+    "configurations": [
+        {
+            "name": "Python: Run Current File with sudo",
+            "type": "python",
+            "request": "launch",
+            "cwd": "${workspaceFolder}",
+            "program": "${file}",
+            //"console": "externalTerminal",
+            "console": "integratedTerminal",
+            "sudo": true
+        }
+    ]
+}

@@ -1,0 +1,8 @@
+my_env/
+PruningProfiler/Data/dataset/*
+PruningProfiler/Data/ILSVRC2012_img_val.tar
+PruningProfiler/Data/imagenet
+#Model/*.pth
+__pycache__
+*.swp
+*.out

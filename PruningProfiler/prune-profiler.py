@@ -35,7 +35,7 @@ def parse_arguments():
     parser.add_argument('--result_dir', type=str, required=True, default="output", help="Directory to store the profiling results")
     return parser.parse_args()
 
-def prune_profiler(results_dir, model_name = 'lenet', prune_ratio = 0.0, prune_config = 'l1_unstructured'):
+def prune_profiler(results_dir, model_name = 'lenet', prune_ratio = 0.0, prune_config = 'l1_unstructured', batchsz_arg = 64, num_workers_arg = 8):
     results_dir__ = os.path.join(os.getcwd(), results_dir)
     if not os.path.exists(results_dir__):
         results_dir_path = pathlib.Path(results_dir__)
@@ -54,7 +54,13 @@ def prune_profiler(results_dir, model_name = 'lenet', prune_ratio = 0.0, prune_c
     perf_cmd_amd = ['perf', 'stat', '-e', 'instructions,cycles,cache-references,cache-misses,branches,branch-misses', '-o', perf_output_file , '-x', ',']
     ## The workload command to be profiled
     #workload_cmd= ['python', 'prune-runner.py', '--model_name', 'lenet', '--pruning_method', prune_config, '--pruning_ratio', str(prune_ratio)]
-    workload_cmd= ['python', 'prune-runner.py', '--model_name', model_name, '--pruning_method', prune_config, '--pruning_ratio', str(prune_ratio)]
+    workload_cmd= ['python', 'prune-runner.py',
+                        '--model_name', model_name,
+                        '--pruning_method', prune_config,
+                        '--pruning_ratio', str(prune_ratio)
+                        '--batchsz', str(batchsz_arg),
+                        '--runnercnt', str(num_workers_arg)
+                        ]
 
     # Header fields for perf command output file
     perf_data_headers = ["counter-value" , "unit", "event" , "event-runtime", "pcnt-running" , "metric-value", "metric-unit" ]
@@ -108,6 +114,9 @@ def prune_profiler(results_dir, model_name = 'lenet', prune_ratio = 0.0, prune_c
     agg_df__['acc'] = acc
     agg_df__['prune_config'] = prune_config
     agg_df__['prune_ratio'] = prune_ratio
+    agg_df__['model_name'] = model_name
+    agg_df__['batchsz_arg'] = batchsz_arg
+    agg_df__['num_workers_arg'] = num_workers_arg
     agg_df__['chipset_name'] = sysinfo.get_chipset_info()
     agg_df__['arch'] = sysinfo.get_arch()
     l1_size, l2_size = sysinfo.get_cache_sizes()
@@ -134,15 +143,15 @@ def prune_profiler(results_dir, model_name = 'lenet', prune_ratio = 0.0, prune_c
 
     # df_stats
 
-def lenet():
-    model_name_list = ['lenet']
-    pruning_config = ['global_unstructured']
-    for modelname in model_name_list:
-        for pruneconf in pruning_config:
-            for ratio in np.arange(0.0,0.8,0.1):
-                results_dir = args.result_dir+'/'+modelname+'-'+pruneconf+'-'+str(ratio)
-                print ('>>> Iteration Config',modelname+'-'+pruneconf+'-'+str(ratio))
-                prune_profiler(results_dir, model_name = modelname, prune_ratio = ratio, prune_config = pruneconf)
+# def lenet():
+#     model_name_list = ['lenet']
+#     pruning_config = ['global_unstructured']
+#     for modelname in model_name_list:
+#         for pruneconf in pruning_config:
+#             for ratio in np.arange(0.0,0.8,0.1):
+#                 results_dir = args.result_dir+'/'+modelname+'-'+pruneconf+'-'+str(ratio)
+#                 print ('>>> Iteration Config',modelname+'-'+pruneconf+'-'+str(ratio))
+#                 prune_profiler(results_dir, model_name = modelname, prune_ratio = ratio, prune_config = pruneconf)
 
 def resnetRun():
     model_name_list = [
@@ -152,12 +161,21 @@ def resnetRun():
            'googlenet'
          ]
     pruning_config = ['l1_unstructured', 'ln_structured', 'random_unstructured']
+    batchsize_arglist = [128, 64, 32, 16, 8, 4]
+    num_workers_arglist = [8, 4, 2, 1]
     for modelname in model_name_list:
         for pruneconf in pruning_config:
             for ratio in np.arange(0.0,0.8,0.1):
-                results_dir = args.result_dir+'/'+modelname+'-'+pruneconf+'-'+str(ratio)
-                print ('=== Iteration Config',modelname+'-'+pruneconf+'-'+str(ratio))
-                prune_profiler(results_dir, model_name = modelname, prune_ratio = ratio, prune_config = pruneconf)
+                for batchsz_arg in batchsize_arglist:
+                    for num_workers_arg in num_workers_arglist:
+                        results_dir = args.result_dir+'/'+modelname+'-'+pruneconf+'-'+str(ratio)+'-'+str(batchsz_arg)+'-'+str(num_workers_arg)
+                        print ('=== Iteration Config',modelname+'-'+pruneconf+'-'+str(ratio)+'-'+str(batchsz_arg)+'-'+str(num_workers_arg))
+                        prune_profiler(results_dir,
+                                       model_name = modelname,
+                                       prune_ratio = ratio,
+                                       prune_config = pruneconf,
+                                       batchsz_arg = batchsz_arg,
+                                       num_workers_arg = num_workers_arg)
 
 
 if __name__ == '__main__':

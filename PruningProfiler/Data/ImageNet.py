@@ -9,7 +9,8 @@ BASE_DIR = os.getcwd()
 
 
 class ImageNetKaagle:
-    def __init__(self):
+    def __init__(self, batchsz_arg = 64, num_workers_arg = 8):
+
         self.imagenet_path = os.path.join(BASE_DIR, 'Data/imagenet')
         self.mean = (0.485, 0.456, 0.406)
         self.std = (0.229, 0.224, 0.225)
@@ -24,8 +25,8 @@ class ImageNetKaagle:
         self.dataset = self.__ImageNetKaggle(self.imagenet_path, "val", self.val_transform)
         self.dataloader = DataLoader(
                     self.dataset,
-                    batch_size=64, # may need to reduce this depending on your GPU 
-                    num_workers=8, # may need to reduce this depending on your num of CPUs and RAM
+                    batch_size=batchsz_arg, # may need to reduce this depending on your GPU
+                    num_workers=num_workers_arg, # may need to reduce this depending on your num of CPUs and RAM
                     shuffle=False,
                     drop_last=False,
                     pin_memory=True

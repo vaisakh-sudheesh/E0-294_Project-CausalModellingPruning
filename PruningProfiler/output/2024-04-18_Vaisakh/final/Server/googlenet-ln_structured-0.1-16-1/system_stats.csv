@@ -1,0 +1,20 @@
+,0
+vm_percent,1.475
+swap_percent,0.0
+cpuloadavg_1min,10.34375
+cpuloadavg_5min,6.864583333333335
+cpu_0,1000.0557500000001
+cpu_1,1000.6075000000001
+cpu_psi_total,732297994.75
+mem_psi_total,0.0
+io_psi_total,202364584.5
+acc,65.00000357627869
+prune_config,ln_structured
+prune_ratio,0.1
+model_name,googlenet
+batchsz_arg,16
+num_workers_arg,1
+chipset_name,Intel(R) Xeon(R) Gold 6140 CPU @ 2.30GHz
+arch,x86_64
+l1_size,1.1 MiB
+l2_size,36 MiB

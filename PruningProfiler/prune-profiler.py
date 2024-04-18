@@ -61,8 +61,8 @@ def prune_profiler(results_dir, model_name = 'lenet', prune_ratio = 0.0, prune_c
 
     # Pruning configurations
     combined_cmd = []
-    combined_cmd = perf_cmd_amd + nvprof_cmd + workload_cmd
-    #combined_cmd = workload_cmd
+    #combined_cmd = perf_cmd_amd + nvprof_cmd + workload_cmd
+    combined_cmd = workload_cmd
     print (combined_cmd)
 
     try:
@@ -73,11 +73,20 @@ def prune_profiler(results_dir, model_name = 'lenet', prune_ratio = 0.0, prune_c
         output, stderr = process.communicate()
         output = output.decode("utf-8")
         stderr = stderr.decode("utf-8")
+        rc = process.returncode
 
-        acc = ''
-        for line in output.splitlines():
-            if "Done - Accuracy after pruning:" in line:
-                acc = line.split(":", 1)[1].strip()
+        if rc != 0:
+            acc = 'DNF'
+            for line in output.splitlines():
+                if "torch.cuda.OutOfMemoryError" in line:
+                    acc = 'NDF-OOM'
+                elif "torch.cuda.OutOfMemoryError" in line:
+                    acc = 'DNF-DATA_ERROR'
+        else:
+            acc = ''
+            for line in output.splitlines():
+                if "Done - Accuracy after pruning:" in line:
+                    acc = line.split(":", 1)[1].strip()
 
 
         statsMon.stopSampling()
@@ -88,8 +97,8 @@ def prune_profiler(results_dir, model_name = 'lenet', prune_ratio = 0.0, prune_c
     print(f'Completed profiling run with accuracy = {acc}...')
     # Parse the output files
     print(f'Processing results...')
-    df_nvprof_data = pd.read_csv( nvprof_output_file, comment='=')
-    df_perf_data = pd.read_csv(perf_output_file , skip_blank_lines=True, skiprows=2, names=perf_data_headers)
+    # df_nvprof_data = pd.read_csv( nvprof_output_file, comment='=')
+    # df_perf_data = pd.read_csv(perf_output_file , skip_blank_lines=True, skiprows=2, names=perf_data_headers)
     dicts= statsMon.getReadings()
     df_stats = pd.DataFrame.from_dict(dicts)
     agg_df = df_stats[['vm_percent','swap_percent','cpuloadavg_1min', 'cpuloadavg_5min', 'cpu_0', 'cpu_1', 'cpu_psi_total', 'mem_psi_total', 'io_psi_total']]
@@ -105,13 +114,13 @@ def prune_profiler(results_dir, model_name = 'lenet', prune_ratio = 0.0, prune_c
 
     # Save the parsed data to the results directory
     print("Saving results dataframes...")
-    res_csv_nvprof = os.path.join(results_dir__, 'nvprof_data.csv')
-    print("\tNVPROF: ",res_csv_nvprof)
-    df_nvprof_data.to_csv(res_csv_nvprof)
+    # res_csv_nvprof = os.path.join(results_dir__, 'nvprof_data.csv')
+    # print("\tNVPROF: ",res_csv_nvprof)
+    # df_nvprof_data.to_csv(res_csv_nvprof)
 
-    res_csv_perf = os.path.join(results_dir__, 'perf_data.csv')
-    print("\tPERF: ",res_csv_perf)
-    df_perf_data.to_csv(res_csv_perf)
+    # res_csv_perf = os.path.join(results_dir__, 'perf_data.csv')
+    # print("\tPERF: ",res_csv_perf)
+    # df_perf_data.to_csv(res_csv_perf)
 
     res_csv_sysstat = os.path.join(results_dir__, 'system_stats.csv')
     print("\tSysStat Summary: ",res_csv_sysstat)

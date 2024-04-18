@@ -57,7 +57,7 @@ def prune_profiler(results_dir, model_name = 'lenet', prune_ratio = 0.0, prune_c
     workload_cmd= ['python', 'prune-runner.py',
                         '--model_name', model_name,
                         '--pruning_method', prune_config,
-                        '--pruning_ratio', str(prune_ratio)
+                        '--pruning_ratio', str(prune_ratio),
                         '--batchsz', str(batchsz_arg),
                         '--runnercnt', str(num_workers_arg)
                         ]

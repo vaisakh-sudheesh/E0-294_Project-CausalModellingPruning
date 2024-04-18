@@ -1,0 +1,20 @@
+,0
+vm_percent,25.133333333333336
+swap_percent,0.0
+cpuloadavg_1min,8.690049913194445
+cpuloadavg_5min,12.729220920138891
+cpu_0,3945.328
+cpu_1,3901.338333333333
+cpu_psi_total,133304073.0
+mem_psi_total,220651.0
+io_psi_total,978264475.6666666
+acc,NDF-OOM
+prune_config,l1_unstructured
+prune_ratio,0.2
+model_name,vgg16
+batchsz_arg,16
+num_workers_arg,1
+chipset_name,Intel(R) Core(TM) i7-9750H CPU @ 2.60GHz
+arch,x86_64
+l1_size,192 KiB (6 instances)
+l2_size,1.5 MiB (6 instances)

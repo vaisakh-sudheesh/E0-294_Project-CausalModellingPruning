@@ -1,0 +1,20 @@
+,0
+vm_percent,21.96666666666667
+swap_percent,0.5
+cpuloadavg_1min,18.781534830729168
+cpuloadavg_5min,15.364583333333334
+cpu_0,2677.7476666666666
+cpu_1,2088.900666666667
+cpu_psi_total,637881616.6666666
+mem_psi_total,106372248.0
+io_psi_total,30308922773.0
+acc,35.200002789497375
+prune_config,random_unstructured
+prune_ratio,0.1
+model_name,resnet
+batchsz_arg,8
+num_workers_arg,1
+chipset_name,AMD Ryzen 7 3700X 8-Core Processor
+arch,x86_64
+l1_size,256 KiB (8 instances)
+l2_size,4 MiB (8 instances)

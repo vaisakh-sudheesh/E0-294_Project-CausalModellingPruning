@@ -1,0 +1,20 @@
+,0
+vm_percent,24.8
+swap_percent,0.0
+cpuloadavg_1min,17.789713541666664
+cpuloadavg_5min,17.787679036458332
+cpu_0,3952.678
+cpu_1,4055.4884999999995
+cpu_psi_total,95071525.5
+mem_psi_total,217121.0
+io_psi_total,926876761.5
+acc,1.4000000432133675
+prune_config,random_unstructured
+prune_ratio,0.2
+model_name,resnet
+batchsz_arg,8
+num_workers_arg,8
+chipset_name,Intel(R) Core(TM) i7-9750H CPU @ 2.60GHz
+arch,x86_64
+l1_size,192 KiB (6 instances)
+l2_size,1.5 MiB (6 instances)

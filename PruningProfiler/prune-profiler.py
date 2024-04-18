@@ -87,10 +87,9 @@ def prune_profiler(results_dir, model_name = 'lenet', prune_ratio = 0.0, prune_c
                     print ("!! Data Error")
         else:
             acc = ''
-            for line in stderr.splitlines():
+            for line in output.splitlines():
                 if "Done - Accuracy after pruning:" in line:
                     acc = line.split(":", 1)[1].strip()
-
 
         statsMon.stopSampling()
 

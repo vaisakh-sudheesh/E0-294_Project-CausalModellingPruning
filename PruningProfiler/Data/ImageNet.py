@@ -32,7 +32,7 @@ class ImageNetKaagle:
                 )
     
     class __ImageNetKaggle(Dataset):
-        def __init__(self, root, split, transform=None):
+        def __init__(self, root, split, transform=None, num_samples=500):
             self.samples = []
             self.targets = []
             self.transform = transform
@@ -44,7 +44,7 @@ class ImageNetKaagle:
             with open(os.path.join(root, "ILSVRC2012_val_labels.json"), "rb") as f:
                         self.val_to_syn = json.load(f)
             samples_dir = os.path.join(root, "", split)
-            for entry in os.listdir(samples_dir):
+            for entry in os.listdir(samples_dir)[:num_samples]:
                 syn_id = self.val_to_syn[entry]
                 target = self.syn_to_class[syn_id]
                 sample_path = os.path.join(samples_dir, entry)

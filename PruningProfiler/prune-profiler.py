@@ -140,7 +140,7 @@ def lenet():
     for modelname in model_name_list:
         for pruneconf in pruning_config:
             for ratio in np.arange(0.0,0.8,0.1):
-                results_dir = 'output/'+modelname+'-'+pruneconf+'-'+str(ratio)
+                results_dir = args.result_dir+'/'+modelname+'-'+pruneconf+'-'+str(ratio)
                 print ('>>> Iteration Config',modelname+'-'+pruneconf+'-'+str(ratio))
                 prune_profiler(results_dir, model_name = modelname, prune_ratio = ratio, prune_config = pruneconf)
 
@@ -155,17 +155,14 @@ def resnetRun():
     for modelname in model_name_list:
         for pruneconf in pruning_config:
             for ratio in np.arange(0.0,0.8,0.1):
-                results_dir = 'output/'+modelname+'-'+pruneconf+'-'+str(ratio)
+                results_dir = args.result_dir+'/'+modelname+'-'+pruneconf+'-'+str(ratio)
                 print ('=== Iteration Config',modelname+'-'+pruneconf+'-'+str(ratio))
                 prune_profiler(results_dir, model_name = modelname, prune_ratio = ratio, prune_config = pruneconf)
 
 
 if __name__ == '__main__':
-    # args = parse_arguments()
-
+    args = parse_arguments()
     # lenet()
     resnetRun()
 
-    # results_dir = args.result_dir
-    # args = parse_arguments(results_dir)
     # prune_profiler()

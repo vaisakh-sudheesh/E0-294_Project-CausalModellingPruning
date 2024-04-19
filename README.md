@@ -31,10 +31,10 @@ Since perf requires super-user access and running python with sudo can be troubl
 ```
 
 Setup a virtual environment and install prerequistes:
-```
+```bash
 $ virtualenv my_env
 $ source my_env/bin/activate
-$ pip3 install numpy pandas gpustat tqdm
+$ pip3 install numpy pandas gpustat tqdm notebook
 $ pip3 install torch torchvision torchaudio
 ```
 
@@ -47,6 +47,42 @@ Modify the path to results directory to the location wherein results for analysi
 ```python
 directory = '../PruningProfiler/output/2024-04-18_Vaisakh/final'
 ```
+
+In case Juypter notebook is not available, you may start a notebook instance as pip has installed a version as part of [Pre-requistes](#pre-requistes):
+```bash
+$ source my_env/bin/activate
+$ jupyter notebook
+
+$ jupyter notebook --allow-root
+[I 2024-04-19 03:29:36.915 ServerApp] jupyter_lsp | extension was successfully linked.
+[I 2024-04-19 03:29:36.924 ServerApp] jupyter_server_terminals | extension was successfully linked.
+[I 2024-04-19 03:29:36.941 ServerApp] jupyterlab | extension was successfully linked.
+[I 2024-04-19 03:29:36.966 ServerApp] notebook | extension was successfully linked.
+[I 2024-04-19 03:29:37.553 ServerApp] notebook_shim | extension was successfully linked.
+[I 2024-04-19 03:29:37.603 ServerApp] notebook_shim | extension was successfully loaded.
+[I 2024-04-19 03:29:37.614 ServerApp] jupyter_lsp | extension was successfully loaded.
+[I 2024-04-19 03:29:37.620 ServerApp] jupyter_server_terminals | extension was successfully loaded.
+[I 2024-04-19 03:29:37.629 LabApp] JupyterLab extension loaded from /root/developer/E0-294_Project-CausalModellingPruning-main/.venv/lib/python3.12/site-packages/jupyterlab
+[I 2024-04-19 03:29:37.630 LabApp] JupyterLab application directory is /root/developer/E0-294_Project-CausalModellingPruning-main/.venv/share/jupyter/lab
+[I 2024-04-19 03:29:37.633 LabApp] Extension Manager is 'pypi'.
+[I 2024-04-19 03:29:37.730 ServerApp] jupyterlab | extension was successfully loaded.
+[I 2024-04-19 03:29:37.739 ServerApp] notebook | extension was successfully loaded.
+[I 2024-04-19 03:29:37.741 ServerApp] Serving notebooks from local directory: /root/developer/E0-294_Project-CausalModellingPruning-main
+[I 2024-04-19 03:29:37.741 ServerApp] Jupyter Server 2.14.0 is running at:
+[I 2024-04-19 03:29:37.741 ServerApp] http://localhost:8888/tree?token=1742443546bfad96d62e3bae0c2e20147d5ceaa935e3f4bf
+[I 2024-04-19 03:29:37.741 ServerApp]     http://127.0.0.1:8888/tree?token=1742443546bfad96d62e3bae0c2e20147d5ceaa935e3f4bf
+[I 2024-04-19 03:29:37.741 ServerApp] Use Control-C to stop this server and shut down all kernels (twice to skip confirmation).
+[C 2024-04-19 03:29:37.772 ServerApp] 
+    
+    To access the server, open this file in a browser:
+        file:///root/.local/share/jupyter/runtime/jpserver-7512-open.html
+    Or copy and paste one of these URLs:
+        http://localhost:8888/tree?token=1742443546bfad96d62e3bae0c2e20147d5ceaa935e3f4bf
+        http://127.0.0.1:8888/tree?token=1742443546bfad96d62e3bae0c2e20147d5ceaa935e3f4bf
+[I 2024-04-19 03:29:37.839 ServerApp] Skipped non-installed server(s): bash-language-server, dockerfile-language-server-nodejs, javascript-typescript-langserver, jedi-language-server, julia-language-server, pyright, python-language-server, python-lsp-server, r-languageserver, sql-language-server, texlab, typescript-language-server, unified-language-server, vscode-css-languageserver-bin, vscode-html-languageserver-bin, vscode-json-languageserver-bin, yaml-language-server
+```
+
+The URL link similar to the one listed above can be used in VScode or other IDEs for running executable.
 
 ## TODO
 

@@ -52,8 +52,6 @@ In case Juypter notebook is not available, you may start a notebook instance as 
 ```bash
 $ source my_env/bin/activate
 $ jupyter notebook
-
-$ jupyter notebook --allow-root
 [I 2024-04-19 03:29:36.915 ServerApp] jupyter_lsp | extension was successfully linked.
 [I 2024-04-19 03:29:36.924 ServerApp] jupyter_server_terminals | extension was successfully linked.
 [I 2024-04-19 03:29:36.941 ServerApp] jupyterlab | extension was successfully linked.

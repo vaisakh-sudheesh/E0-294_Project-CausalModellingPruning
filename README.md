@@ -1,7 +1,7 @@
 The components of this project are divide in to two components:
 
 * Pruning & Profiling utility [Running Profiling](#running-profiling)
-* Data analysis and  Causal graph generation [Python Notebook](#generating_causal_graph)
+* Data analysis and  Causal graph generation [Python Notebook](#generating-causal-graph) 
 
 ## Running Profiling
 

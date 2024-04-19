@@ -40,9 +40,9 @@ $ pip3 install torch torchvision torchaudio
 
 ## Generating Causal Graph
 
-Open the python notebook ''
+Open the python notebook **CausalModeling/DataProcessing.ipynb**
 
-Modify the path to results directory to the location wherein results for analysis stored:
+Modify the path to results directory to the location wherein results for analysis stored, and run the full script.
 
 ```python
 directory = '../PruningProfiler/output/2024-04-18_Vaisakh/final'

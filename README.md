@@ -1,3 +1,8 @@
+The components of this project are divide in to two components:
+
+* Pruning & Profiling utility [Running Profiling](#running-profiling)
+* Data analysis and  Causal graph generation [Python Notebook](#generating_causal_graph)
+
 ## Running Profiling
 
 Accepts one command line argument to store results files(CSV and output)
@@ -6,7 +11,7 @@ Accepts one command line argument to store results files(CSV and output)
  $  python prune-profiler.py --result_dir output/run-1
 ```
 
-## Pre-requistes 
+### Pre-requistes 
 
 > [!TIP]
 > This below step for perf event setting is only required if we need to gather perf data
@@ -33,6 +38,15 @@ $ pip3 install numpy pandas gpustat tqdm
 $ pip3 install torch torchvision torchaudio
 ```
 
+## Generating Causal Graph
+
+Open the python notebook ''
+
+Modify the path to results directory to the location wherein results for analysis stored:
+
+```python
+directory = '../PruningProfiler/output/2024-04-18_Vaisakh/final'
+```
 
 ## TODO
 

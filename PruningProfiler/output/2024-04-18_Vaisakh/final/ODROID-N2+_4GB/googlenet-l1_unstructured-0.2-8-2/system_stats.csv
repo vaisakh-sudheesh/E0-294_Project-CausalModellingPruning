@@ -1,0 +1,15 @@
+,0
+vm_percent,29.416666666666668
+swap_percent,1.3000000000000003
+cpuloadavg_1min,89.03333875868056
+cpuloadavg_5min,85.59366861979167
+acc,68.00000071525574
+prune_config,l1_unstructured
+prune_ratio,0.2
+model_name,googlenet
+batchsz_arg,8
+num_workers_arg,2
+chipset_name,Cortex-A53
+arch,aarch64
+l1_size,
+l2_size,

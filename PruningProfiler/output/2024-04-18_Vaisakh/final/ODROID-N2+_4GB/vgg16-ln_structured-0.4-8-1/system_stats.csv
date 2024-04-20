@@ -1,0 +1,15 @@
+,0
+vm_percent,83.35573770491804
+swap_percent,18.60218579234973
+cpuloadavg_1min,94.1040706113388
+cpuloadavg_5min,93.49981144694898
+acc,34.00000035762787
+prune_config,ln_structured
+prune_ratio,0.4
+model_name,vgg16
+batchsz_arg,8
+num_workers_arg,1
+chipset_name,Cortex-A53
+arch,aarch64
+l1_size,
+l2_size,

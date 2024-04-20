@@ -1,0 +1,15 @@
+,0
+vm_percent,51.0
+swap_percent,0.7
+cpuloadavg_1min,74.11865234375
+cpuloadavg_5min,75.7373046875
+acc,60.00000238418579
+prune_config,random_unstructured
+prune_ratio,0.1
+model_name,alexnet
+batchsz_arg,10
+num_workers_arg,8
+chipset_name,Cortex-A53
+arch,aarch64
+l1_size,
+l2_size,

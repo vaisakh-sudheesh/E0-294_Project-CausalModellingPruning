@@ -1,0 +1,15 @@
+,0
+vm_percent,43.53846153846154
+swap_percent,0.5999999999999999
+cpuloadavg_1min,79.23177083333334
+cpuloadavg_5min,85.06297576121794
+acc,25.999999046325684
+prune_config,random_unstructured
+prune_ratio,0.1
+model_name,resnet
+batchsz_arg,4
+num_workers_arg,8
+chipset_name,Cortex-A53
+arch,aarch64
+l1_size,
+l2_size,
